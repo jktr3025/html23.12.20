@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type="text/css">
+.test img{
+    cursor: move;
+    width: 100px;
+}
+.test div{
+    width: 300px;
+    height: 200px;
+    border: 3px solid dodgerblue;
+    margin: 10px;
+    position: relative;
+    display: inline-block;
+}
+    </style>
+    <script src="script/jquery-3.7.1.js"></script>
+    <script src="script/jquery-ui.js"></script>
+    <script lang="java">
+        $(function(){
+            $(".test img").draggable({
+                containment:"parent",
+                drag:function(){
+                    var pos = $(this).position()
+                    $(".test img").not(this).css({"top":pos.top,"left":pos.left});
+                    console.log("pos:",pos)
+                }//drag
+
+            })//test img").draggable
+        })//jquery
+    </script>
+</head>
+<body>
+    <div class="test">
+        <div>
+            <img src="img/normal_01.png" 
+            onmousedown="this.src='img/normal_02.png'"
+            onmouseout="this.src='img/normal_01.png'">
+        </div>
+        <div>
+            <img src="img/normal_03.png" 
+            onmousedown="this.src='img/normal_04.png'"
+            onmouseout="this.src='img/normal_03.png'">
+        </div>
+        <div>
+            <img src="img/normal_05.png" 
+            onmousedown="this.src='img/normal_06.png'"
+            onmouseout="this.src='img/normal_05.png'">
+        </div>
+    </div><!-- test -->
+</body>
+</html>

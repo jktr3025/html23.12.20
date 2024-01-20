@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="script/jquery-3.7.1.js"></script>
+    <script src="script/jquery-ui.js"></script>
+    <script lang="java">
+        $(function(){
+            var test_idx=1;
+            $(".test img")
+            .draggable({
+                containment:"parent"         //부모의 범위 밖으로 못 나감
+            })//draggable
+            .css({"cursor":"move"})
+            .mousedown(function(){
+            $(this).css({"z-index":test_idx})
+            test_idx ++;         //변수로 지정해서 명령주면 내가 마지막 드래그 한 이미지가 제일 위로 올라옴
+            })//mousedown
+        })//jquery
+    </script>
+
+    <style type="text/css">
+        .test{
+            border: 5px solid darkmagenta;
+            height: 500px;
+            width: 500px;
+        }
+        .test img{
+            /* cursor: move;
+            z-index: 100; */
+        }
+    </style>
+</head>
+<body>
+    <div class="test">
+        <img src="img/normal_01.png" alt="">
+        <img src="img/normal_02.png" alt="">
+        <img src="img/normal_03.png" alt="">
+        <img src="img/normal_04.png" alt="">
+    </div><!-- test -->
+</body>
+</html>

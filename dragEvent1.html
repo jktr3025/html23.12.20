@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="script/jquery-3.7.1.js"></script>
+    <script src="script/jquery-ui.js"></script>
+    <script lang="java">
+        $(function(){
+
+            $(".drag").draggable({
+                // cursor:"move"  //드래그할 떄 마우스를 방향을 가리키는 모양의 드래그로 바꿔줌
+
+            }) //drag").draggable
+
+            $(".drag").bind("dragstart", function(){
+                $(this).addClass("on");
+            })    //드래그가 되는 동안 ~조건으로 묶어주겠다
+
+            $(".drag").bind("dragstop", function(){
+                $(this).removeClass("on");
+            }) //드래그가 끝나면 ~조건으로 묶어주겠다
+        })//jquery
+    </script>
+    <style type="text/css">
+        .drag{
+            width: 200px;
+            height: 200px;
+            float: left; 
+        }
+        .drag.on{
+            opacity: 0.5;
+            transform: scale(0.5);
+        }
+    </style>
+</head>
+<body>
+    <div class="drag">
+        <img src="img/icon01.png" alt="">
+    </div>
+    <div class="drag">
+        <img src="img/icon02.png" alt="">
+    </div>
+    <div class="drag">
+        <img src="img/icon03.png" alt="">
+    </div>
+</body>
+</html>

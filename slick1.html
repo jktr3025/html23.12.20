@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/slick.css">
+
+    <script src="script/jquery-3.7.1.js"></script>
+    <script src="script/jquery-ui.js"></script>
+    <script src="script/slick.js"></script>
+
+    <style type="text/css">
+        *{
+            margin: 0;padding: 0;
+        }
+        ul,ol,li{
+            list-style: none;
+        }
+        a{
+            text-decoration: none;
+            color: inherit;
+        }
+        .box{}
+        .move{
+            width: 600px;
+            height: 400px;
+            margin: 100px auto 0;
+            /* border: 5px solid lightcoral; */
+        }
+        .move .slick-slide{
+            /* border: 1px solid red; */
+            height: 400px;
+        }
+        .move .slick-slide a{}
+
+        .move .slick-dots{
+            text-align: center;
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .move .slick-dots li{       
+            display: inline-block;
+            margin: 0 2px;
+         }
+        .move .slick-dots li button{
+            display: block;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            border: none;
+            text-indent: -9999px;
+            background-color: gainsboro;
+            transition: all 0.3s;
+            box-shadow: inset 1px 1px 5px rgba(0, 0, 0, 0.5);
+            cursor: pointer;
+        }
+        .move .slick-dots li.slick-active button{
+            background-color: lightcoral;
+        }
+
+        .move .slick-arrow{
+            position: absolute;
+            width: 20px;
+            height: 50px;
+            border-radius: 10px;
+            border: none;
+            background-color: indianred;
+            text-indent: -9999px;
+            z-index: 100;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+        }
+        .move .slick-arrow.slick-prev{
+            left: -25px;
+        }
+        .move .slick-arrow.slick-next{
+            right: -25px;
+        }
+
+        /* 슬라이드  */
+        .slide_img{
+            width: 700px;
+            margin: 100px auto;
+            /* border: 1px silver solid; */
+        }
+        .view{
+            height: 124px;
+        }
+        
+        .view .slick-slide{
+            height: 124px;
+        }
+        .view .slick-slide a{
+            display: block;
+            width: 100%;height: 100%;
+            overflow: hidden;
+        }
+
+        .view .slick-dots{
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: 5px;
+        }
+        .view .slick-dots li{
+            display: inline-block;
+            margin: 0 3px;
+
+        }
+        .view .slick-dots li button{
+            display: block;
+            width: 10px;
+            height: 5px;
+            background-color: rebeccapurple;
+            border-radius: 3px;
+            border: none;
+            cursor: pointer;
+            /* box-shadow: 0 1px 1px black; */
+            text-indent: -9999px;
+            transition: all 0.5s;
+        }
+        .view .slick-dots li.slick-active button{
+            width: 30px;
+            background-color: plum;
+        }
+
+        .view .slick-arrow{
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 28px;
+            height: 27px;
+            background-image: url("img/bg_direction_nav.png");
+            background-repeat: no-repeat;
+            border: none;
+            text-indent: -9999px;
+            z-index: 50;
+            background-color: transparent;
+        }
+        .view .slick-arrow.slick-prev{
+            left: -30px;
+        }
+        .view .slick-arrow.slick-next{
+            right: -30px;
+            background-position: right top;
+        }
+
+        /* car */
+        .car{
+        }
+        .c_view{
+            width: 800px;
+            margin: 100px auto;
+        }
+        .c_view .slick-slide{
+
+        }
+        .c_view .slick-slide a{
+        }
+        .c_view .slick-slide a img{}
+
+        .c_view .slick-dots{
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: 30px;
+        }
+        .c_view .slick-dots li{
+            display: inline-block;
+        }
+        .c_view .slick-dots li button{
+            display: block;
+            margin: 0 5px;
+            border: none;
+            text-indent: -9999px;
+            background-color: gainsboro;
+            width: 20px;
+            height: 7px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .c_view .slick-dots li.slick-active button{
+            background-color: cornflowerblue;
+            width: 60px;
+        }
+
+        .c_view .slick-arrow{
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 50;
+            width: 30px;
+            height: 50px;
+            text-indent: -9999px;
+            border: none;
+            background-color: dodgerblue;
+            cursor: pointer;
+
+        }
+        .c_view .slick-arrow.slick-prev{
+            left: -40px;
+            border-radius: 20px 0 0 20px;
+        }
+        .c_view .slick-arrow.slick-next{
+            right: -40px;
+            border-radius:  0 20px  20px 0 ;
+        }
+
+
+
+
+    </style>
+
+    <script lang="java">
+        $(function(){
+
+            $(".move").slick({
+                autoplay:true,   //슬라이드 자동 실행 여부 기본값 false로 자동 슬라이드 안 됨
+                autoplaySpeed:500,    //슬라이드 속도 (1000이 1초)
+                dots:true,       //버튼 여부 기본값 false로 안 나타남
+                arrows:true,    //앞 뒤 이동 화살표 여부 기본값 true로 버튼 표시됨
+                slidesToShow:1,    //한 번에 노출될 이미지 갯수
+                slidesToScroll:1,  //앞 뒤 화살표 한 번 누를 때 이동될 이미지 갯수 (한 번에 이동될 이미지 갯수 증가하면 버튼 객수 줄어든)
+                infinite:true, // 무한 반복 여부 기본값이 true로 계속 반복됨
+                rows:1,     //이미지를 몇 줄로 표시할지 여부 
+                // slidesPerRow:2,
+                // vertical:true,  //이미지가 위 아래로 슬라이드 됨
+                // fade:true, //이미지가 페이드 효과로 슬라이드 됨
+                pauseOnFocus:true,     //마우스 클릭 시 슬라이드 멈춤 기본값 true
+                pauseOnHover:true , // 마우스 호버시 슬라이드 멈춤 기본값 true
+                pauseOnDotsHover:true,   //마우스를 버튼에 호버시 슬라이드 멈춤 기본값 false
+
+
+                // 여러 속성 입력시 쉼표(,) 필요
+            })//move").slick
+
+
+
+            $(".view").slick({
+                dots:true,
+                infinite:true,
+                centerMode:true,      
+                //센터모드 사용하면 slidesToScroll 안 먹힘
+                slidesToShow:5,
+                // slidesToScroll:3,
+                centerPadding:"20px",  
+                // 이미지를 가운데 집어넣고 옆에 이미지를 얼마나 더 여부
+                //여기에서는 한 번에 보여질 이미지 5를 줬으니 양 옆의 이미지를 얼마나 보여줄지를 의미
+                // initialSlide:3,      //가운데 올 이미지 번호
+            })//view").slick
+
+            $(".c_view").slick({
+                autoplay:true,
+                autoplaySpeed:1000,
+                fade:true,
+                dots:true,
+                pauseOnHover:true,
+                pauseOnDotsHover:true,
+            })//c_view").slick
+            
+            
+
+
+        })//jquery
+
+
+
+    </script>
+</head>
+<body>
+    <div class="box">
+        <ul class="move">
+            <li><a href="#"><img src="img/animal01.png" alt=""></a></li>
+            <li><a href="#"><img src="img/animal02.png" alt=""></a></li>
+            <li><a href="#"><img src="img/animal03.png" alt=""></a></li>
+            <li><a href="#"><img src="img/animal04.png" alt=""></a></li>
+            <li><a href="#"><img src="img/animal05.png" alt=""></a></li>
+            <li><a href="#"><img src="img/animal06.png" alt=""></a></li>
+            <li><a href="#"><img src="img/animal07.png" alt=""></a></li>
+            <li><a href="#"><img src="img/animal08.png" alt=""></a></li>
+            <li><a href="#"><img src="img/animal09.png" alt=""></a></li>
+            <li><a href="#"><img src="img/animal10.png" alt=""></a></li>
+            <li><a href="#"><img src="img/animal011.png" alt=""></a></li>
+            <li><a href="#"><img src="img/animal012.png" alt=""></a></li>
+        </ul><!-- move -->
+    </div><!-- box -->
+
+
+    <div class="slide_img">
+        <div class="view">
+            <div><a href="#"><img src="img/normal_01.png" alt=""></a></div>
+            <div><a href="#"><img src="img/normal_02.png" alt=""></a></div>
+            <div><a href="#"><img src="img/normal_03.png" alt=""></a></div>
+            <div><a href="#"><img src="img/normal_04.png" alt=""></a></div>
+            <div><a href="#"><img src="img/normal_05.png" alt=""></a></div>
+            <div><a href="#"><img src="img/normal_06.png" alt=""></a></div>
+            <div><a href="#"><img src="img/normal_07.png" alt=""></a></div>
+            <div><a href="#"><img src="img/normal_08.png" alt=""></a></div>
+            <div><a href="#"><img src="img/normal_09.png" alt=""></a></div>
+            <div><a href="#"><img src="img/normal_10.png" alt=""></a></div>
+            <div><a href="#"><img src="img/normal_11.png" alt=""></a></div>
+            <div><a href="#"><img src="img/normal_12.png" alt=""></a></div>
+            <div><a href="#"><img src="img/normal_13.png" alt=""></a></div>
+            <div><a href="#"><img src="img/normal_14.png" alt=""></a></div>
+        </div><!-- view -->
+    </div><!-- slide_img -->
+
+    <div class="car">
+        <ul class="c_view">
+            <li><a href="#"><img src="img/001.jpg" alt=""></a></li>
+            <li><a href="#"><img src="img/002.jpg" alt=""></a></li>
+            <li><a href="#"><img src="img/003.jpg" alt=""></a></li>
+            <li><a href="#"><img src="img/004.jpg" alt=""></a></li>
+            <li><a href="#"><img src="img/005.jpg" alt=""></a></li>
+            <li><a href="#"><img src="img/006.jpg" alt=""></a></li>
+            <li><a href="#"><img src="img/007.jpg" alt=""></a></li>
+        </ul><!-- c_view -->
+    </div><!-- car -->
+
+
+</body>
+</html>
